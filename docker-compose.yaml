@@ -1,0 +1,18 @@
+version: '3'
+services:
+  redis:
+    image: redis:7.0.5-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+  myapp:
+    image: deneme
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      - WEATHER_API_KEY=ND2J8ZDV6UGND7FVN6HCXJHL7
